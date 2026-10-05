@@ -8,7 +8,18 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-
+app.get("/", (req, res) => {
+  res.json({
+    message: "Contact Management System API is running",
+    endpoints: {
+      create: "POST /contacts",
+      getAll: "GET /contacts",
+      getById: "GET /contacts/:id",
+      update: "PUT /contacts/:id",
+      delete: "DELETE /contacts/:id"
+    }
+  });
+});
 // MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
